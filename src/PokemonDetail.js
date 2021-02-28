@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { useParams } from "react-router";
 
@@ -23,7 +24,23 @@ const GET_POKEMON_DETAIL = gql`
   }
 `
 
-const PokemonDetail = ({ }) => {
+const PokemonDetail = ({ handleSetMyPokemon }) => {
+  const [nickname, setNickname] = useState("");
+
+  const handleCatch = () => {
+
+  };
+
+  const handleInputText = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const handleInputSubmit = (e) => {
+    e.preventDefault();
+    handleSetMyPokemon(nickname);
+    setNickname("");
+  };
+
   let { name } = useParams();
 
   const { loading, error, data } = useQuery(GET_POKEMON_DETAIL, {
@@ -46,10 +63,23 @@ const PokemonDetail = ({ }) => {
             return i <= 10;
           })
           .map(move => {
-            return <li>{move.move.name}</li>;
+            return <li key={move.move.name}>{move.move.name}</li>;
           })
         }
       </ul>
+
+      <button onClick={handleCatch}>Catch</button>
+
+      <div id="catchModal" className="modal">
+        <div className="modal-content">
+          <span className="close">&times;</span>
+          <form>
+            <label htmlFor="nickname">Nickname: </label>
+            <input type="text" name="nickname" value={nickname} onChange={handleInputText}></input>
+            <input type="submit" onClick={handleInputSubmit}></input>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
