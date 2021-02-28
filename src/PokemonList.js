@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 const GET_POKEMONS_LIST = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -31,13 +32,13 @@ const PokemonList = ({ }) => {
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
-  console.log(data);
-
   return (
     <ol name="pokemon">
       {data.pokemons.results.map(pokemon => (
         <li key={pokemon.id}>
-          {pokemon.name}
+          <Link to={`pokemon/${pokemon.name}`}>
+            {pokemon.name}
+          </Link>
         </li>
       ))}
     </ol>
