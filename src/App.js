@@ -28,7 +28,7 @@ function App() {
         <Switch>
           <Route exact path="/pokemons" component={PokemonList} />
           <Route path="/pokemon/:name" render={() => (
-            <PokemonDetail handleSetMyPokemon={handleSetMyPokemon} />
+            <PokemonDetail myPokemon={myPokemon} handleSetMyPokemon={handleSetMyPokemon} />
           )} />
           <Route path="/mypokemon" render={() => (
             <MyPokemonList myPokemon={myPokemon} />

@@ -24,11 +24,18 @@ const GET_POKEMON_DETAIL = gql`
   }
 `
 
-const PokemonDetail = ({ handleSetMyPokemon }) => {
+const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
   const [nickname, setNickname] = useState("");
+  const [showModal, setShowmodal] = useState(false);
 
   const handleCatch = () => {
-
+    const rand = Math.random();
+    if (rand > 0.5) {
+      alert("Catched");
+      setShowmodal(true);
+    } else {
+      alert("failed");
+    }
   };
 
   const handleInputText = (e) => {
@@ -37,8 +44,15 @@ const PokemonDetail = ({ handleSetMyPokemon }) => {
 
   const handleInputSubmit = (e) => {
     e.preventDefault();
-    handleSetMyPokemon(nickname);
-    setNickname("");
+    console.log(myPokemon.filter(pokemon => pokemon === nickname).length);
+    if (myPokemon.filter(pokemon => pokemon === nickname).length > 0) {
+      setNickname("");
+      alert("Nickname already used.");
+    } else {
+      handleSetMyPokemon(nickname);
+      setNickname("");
+      setShowmodal(false);
+    }
   };
 
   let { name } = useParams();
@@ -70,7 +84,7 @@ const PokemonDetail = ({ handleSetMyPokemon }) => {
 
       <button onClick={handleCatch}>Catch</button>
 
-      <div id="catchModal" className="modal">
+      <div id="catchModal" className="modal" style={showModal ? { display: "block" } : { display: "none" }}>
         <div className="modal-content">
           <span className="close">&times;</span>
           <form>
