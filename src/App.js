@@ -20,6 +20,10 @@ function App() {
     setMyPokemon([...myPokemon, nickname]);
   }
 
+  const handleRemovePokemon = (nickname) => {
+    setMyPokemon([...myPokemon.filter(pokemon => pokemon !== nickname)]);
+  }
+
   return (
     <ApolloProvider client={client}>
       <div className="App">
@@ -31,7 +35,7 @@ function App() {
             <PokemonDetail myPokemon={myPokemon} handleSetMyPokemon={handleSetMyPokemon} />
           )} />
           <Route path="/mypokemon" render={() => (
-            <MyPokemonList myPokemon={myPokemon} />
+            <MyPokemonList myPokemon={myPokemon} handleRemovePokemon={handleRemovePokemon} />
           )} />
         </Switch>
       </div>
