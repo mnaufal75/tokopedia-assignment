@@ -23,10 +23,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        {myPokemon.map(e => (
-          <h1>{e}</h1>
-        ))}
         <Link to="/pokemons">poke</Link>
+        <Link to="/mypokemon">my poke</Link>
         <Switch>
           <Route exact path="/pokemons" component={PokemonList} />
           <Route path="/pokemon/:name" render={() => (
