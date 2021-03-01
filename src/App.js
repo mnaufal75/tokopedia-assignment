@@ -1,7 +1,9 @@
+/** @jsxImportSource @emotion/react */
+
 import React, { useState } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { Link, Route, Switch } from 'react-router-dom';
-import './App.css';
+import { css } from '@emotion/react'
 import PokemonList from './PokemonList';
 import PokemonDetail from './PokemonDetail';
 import MyPokemonList from './MyPokemonList';
@@ -26,9 +28,37 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <Link to="/pokemons">poke</Link>
-        <Link to="/mypokemon">my poke</Link>
+      <div className="App" css={css`
+        background-color: white;
+        height: 100vh;
+        width: 500px;
+        text-align: center;
+        margin: 0 auto;
+      `}>
+        <nav css={css`
+          height: 50px;
+          margin: 0 auto;
+          background-color: #F1F1F1;
+          position: relative;
+          font-size: 17px;
+          text-transform: uppercase;
+        `}>
+          <Link to="/pokemons" css={css`
+              display: inline-block;
+              float: left;
+              text-decoration: none;
+            `}>
+            POKEMON
+          </Link>
+          <Link to="/mypokemon" css={css`
+              display: inline-block;
+              float: right;
+              text-decoration: none;
+            `}>
+            MY POKEMON
+          </Link>
+        </nav>
+
         <Switch>
           <Route exact path="/pokemons" component={PokemonList} />
           <Route path="/pokemon/:name" render={() => (
