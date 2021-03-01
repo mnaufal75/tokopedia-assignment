@@ -81,6 +81,14 @@ const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
           })
         }
       </ul>
+      <h2>Types: </h2>
+      <ul>
+        {data.pokemon.types
+          .map(type => {
+            return <li key={type.type.name}>{type.type.name}</li>;
+          })
+        }
+      </ul>
 
       <button onClick={handleCatch}>Catch</button>
 
