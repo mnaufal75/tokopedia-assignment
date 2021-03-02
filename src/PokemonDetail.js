@@ -1,6 +1,9 @@
+/** @jsxImportSource @emotion/react */
+
 import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { useParams } from "react-router";
+import { css } from '@emotion/react'
 
 const GET_POKEMON_DETAIL = gql`
   query pokemon($name: String!) {
@@ -68,27 +71,63 @@ const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
 
   return (
     <div>
-      <h1>{data.pokemon.name}</h1>
-      <img src={data.pokemon.sprites.front_default} />
-      <h2>Moves: </h2>
-      <ul>
-        {data.pokemon.moves
-          .filter((_, i) => {
-            return i <= 10;
-          })
-          .map(move => {
-            return <li key={move.move.name}>{move.move.name}</li>;
-          })
-        }
-      </ul>
-      <h2>Types: </h2>
-      <ul>
-        {data.pokemon.types
-          .map(type => {
-            return <li key={type.type.name}>{type.type.name}</li>;
-          })
-        }
-      </ul>
+      <div css={css`
+        padding: 1rem;
+      `}>
+        <span css={css`
+        display: block;
+        text-transform: capitalize;
+        font-size: 2rem;
+      `}>
+          {data.pokemon.name}
+        </span>
+        <img src={data.pokemon.sprites.front_default} />
+      </div>
+
+      <div css={css`
+        padding: 1rem;
+      `}>
+        <span css={css`
+          text-align: left;
+          font-size: 1.5rem;
+        `}>
+          Moves:
+        </span>
+        <div css={css`
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        `}>
+          {data.pokemon.moves
+            .filter((_, i) => {
+              return i <= 10;
+            })
+            .map(move => {
+              return <span key={move.move.name} css={css`padding: 1rem`}>{move.move.name}</span>;
+            })
+          }
+        </div>
+      </div>
+
+      <div css={css`
+        padding: 1rem;
+      `}>
+        <span css={css`
+          text-align: left;
+          font-size: 1.5rem;
+        `}>
+          Types:
+        </span>
+        <div css={css`
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        `}>
+          {data.pokemon.types
+            .map(type => {
+              return <span key={type.type.name} css={css`padding: 1rem`}>{type.type.name}</span>;
+            })
+          }
+        </div>
+      </div>
 
       <button onClick={handleCatch}>Catch</button>
 
@@ -102,7 +141,7 @@ const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
           </form>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
