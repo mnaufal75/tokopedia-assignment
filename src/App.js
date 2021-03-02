@@ -60,7 +60,9 @@ function App() {
         </nav>
 
         <Switch>
-          <Route exact path="/pokemons" component={PokemonList} />
+          <Route exact path="/" render={() => (
+            <PokemonList myPokemon={myPokemon} />
+          )} />
           <Route path="/pokemon/:name" render={() => (
             <PokemonDetail myPokemon={myPokemon} handleSetMyPokemon={handleSetMyPokemon} />
           )} />
