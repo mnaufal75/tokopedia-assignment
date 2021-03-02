@@ -58,6 +58,10 @@ const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
     }
   };
 
+  const handleClose = () => {
+    setShowmodal(false);
+  };
+
   const animation = keyframes`
     from {top:-300px; opacity:0}
     to {top:0px; opacity:1}
@@ -118,7 +122,8 @@ const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
               position: absolute;
               top: 0.5rem;
               right: 1rem;
-            `}>
+              cursor: pointer;
+            `} onClick={handleClose}>
               &times;
             </span>
           </div>
