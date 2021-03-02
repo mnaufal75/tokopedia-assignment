@@ -31,16 +31,16 @@ function App() {
       <div className="App" css={css`
         background-color: white;
         height: 100vh;
-        width: 500px;
+        max-width: 500px;
         text-align: center;
         margin: 0 auto;
       `}>
         <nav css={css`
-          height: 50px;
+          height: 2rem;
           margin: 0 auto;
           background-color: #F1F1F1;
           position: relative;
-          font-size: 17px;
+          font-size: 1.5rem;
           text-transform: uppercase;
         `}>
           <Link to="/pokemons" css={css`
