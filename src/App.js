@@ -43,7 +43,7 @@ function App() {
           font-size: 1.5rem;
           text-transform: uppercase;
         `}>
-          <Link to="/pokemons" css={css`
+          <Link to="/" css={css`
               display: inline-block;
               float: left;
               text-decoration: none;
