@@ -16,13 +16,27 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [myPokemon, setMyPokemon] = useState([]);
+  let store = localStorage.getItem('myPokemon');
+  store = store ? store.split(',') : [];
+  localStorage.setItem('myPokemon', store);
+
+  const [myPokemon, setMyPokemon] = useState(store);
 
   const handleSetMyPokemon = (nickname) => {
+    let store = localStorage.getItem('myPokemon');
+    store = store ? store.split(',') : [];
+    store.push(nickname);
+    localStorage.setItem('myPokemon', store);
+
     setMyPokemon([...myPokemon, nickname]);
   }
 
   const handleRemovePokemon = (nickname) => {
+    let store = localStorage.getItem('myPokemon');
+    store = store ? store.split(',') : [];
+    store = store.filter(el => el !== nickname);
+    localStorage.setItem('myPokemon', store);
+
     setMyPokemon([...myPokemon.filter(pokemon => pokemon !== nickname)]);
   }
 
