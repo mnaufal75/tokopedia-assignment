@@ -1,14 +1,18 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { Link, Route, Switch } from 'react-router-dom';
 import { css } from '@emotion/react'
-import PokemonList from './PokemonList';
-import PokemonDetail from './PokemonDetail';
-import MyPokemonList from './MyPokemonList';
-
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+
+// import PokemonList from './PokemonList';
+// import PokemonDetail from './PokemonDetail';
+// import MyPokemonList from './MyPokemonList';
+const PokemonList = lazy(() => import('./PokemonList'));
+const PokemonDetail = lazy(() => import('./PokemonDetail'));
+const MyPokemonList = lazy(() => import('./MyPokemonList'));
+
 
 const client = new ApolloClient({
   uri: 'https://graphql-pokeapi.vercel.app/api/graphql',
@@ -75,13 +79,19 @@ function App() {
 
         <Switch>
           <Route exact path="/" render={() => (
-            <PokemonList myPokemon={myPokemon} />
+            <Suspense fallback={<h1>Still Loading…</h1>}>
+              <PokemonList myPokemon={myPokemon} />
+            </Suspense>
           )} />
           <Route path="/pokemon/:name" render={() => (
-            <PokemonDetail myPokemon={myPokemon} handleSetMyPokemon={handleSetMyPokemon} />
+            <Suspense fallback={<h1>Still Loading…</h1>}>
+              <PokemonDetail myPokemon={myPokemon} handleSetMyPokemon={handleSetMyPokemon} />
+            </Suspense>
           )} />
           <Route path="/mypokemon" render={() => (
-            <MyPokemonList myPokemon={myPokemon} handleRemovePokemon={handleRemovePokemon} />
+            <Suspense fallback={<h1>Still Loading…</h1>}>
+              <MyPokemonList myPokemon={myPokemon} handleRemovePokemon={handleRemovePokemon} />
+            </Suspense>
           )} />
         </Switch>
       </div>
