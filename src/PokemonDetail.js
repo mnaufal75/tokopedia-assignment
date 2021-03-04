@@ -96,7 +96,7 @@ const PokemonDetail = ({ myPokemon, handleSetMyPokemon }) => {
     }
   });
 
-  if (loading) return 'Loading...';
+  if (loading) return '';
   if (error) return `Error! ${error.message}`;
 
   return (

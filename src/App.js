@@ -9,7 +9,12 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 // import PokemonList from './PokemonList';
 // import PokemonDetail from './PokemonDetail';
 // import MyPokemonList from './MyPokemonList';
-const PokemonList = lazy(() => import('./PokemonList'));
+// const PokemonList = lazy(() => import('./PokemonList'));
+const PokemonList = lazy(() => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(import('./PokemonList')), 2000);
+  });
+});
 const PokemonDetail = lazy(() => import('./PokemonDetail'));
 const MyPokemonList = lazy(() => import('./MyPokemonList'));
 

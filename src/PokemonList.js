@@ -32,16 +32,16 @@ const PokemonList = ({ myPokemon }) => {
     }
   });
 
-  if (loading) return 'Loading...';
+  if (loading) return '';
   if (error) return `Error! ${error.message}`;
 
   return (
     <div>
       <span css={css`font-size: 1.2rem`}>You own {myPokemon.length <= 1 ? `${myPokemon.length} pokemon` : `${myPokemon.length} pokemons`}</span>
       <div name="pokemon" css={css`
-      display: grid;
-      grid-template-columns: auto auto auto;
-    `}>
+        display: grid;
+        grid-template-columns: auto auto auto;
+      `}>
         {data.pokemons.results.map(pokemon => (
           <Link to={`pokemon/${pokemon.name}`} key={pokemon.id} css={css`
           text-decoration: none;
@@ -53,11 +53,11 @@ const PokemonList = ({ myPokemon }) => {
               }
             `} />
             <span to={`pokemon/${pokemon.name}`} css={css`
-            text-transform: capitalize;
-            color: black;
-            display: block;
-            font-size: 1.2rem;
-          `}>
+              text-transform: capitalize;
+              color: black;
+              display: block;
+              font-size: 1.2rem;
+            `}>
               {pokemon.name}
             </span>
           </Link>
