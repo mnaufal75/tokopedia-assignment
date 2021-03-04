@@ -54,25 +54,44 @@ function App() {
         margin: 0 auto;
       `}>
         <nav css={css`
-          height: 2rem;
+          height: 3rem;
           margin: 0 auto;
-          background-color: #F1F1F1;
+          background-color: #888;
           position: relative;
           font-size: 1.5rem;
           text-transform: uppercase;
         `}>
           <Link to="/" css={css`
-              display: inline-block;
-              float: left;
-              text-decoration: none;
-            `}>
+            display: inline-block;
+            position: absolute;
+            height: 3rem;
+            left: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            text-decoration: none;
+            background-color: #5cb85c;
+            color: white;
+            padding: 0.5rem;
+            &:hover {
+              background-color: #4CAF50;
+            }
+          `}>
             POKEMON
           </Link>
           <Link to="/mypokemon" css={css`
-              display: inline-block;
-              float: right;
-              text-decoration: none;
-            `}>
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            text-decoration: none;
+            background-color: #5cb85c;
+            color: white;
+            padding: 0.5rem;
+            &:hover {
+              background-color: #4CAF50;
+            }
+          `}>
             MY POKEMON
           </Link>
         </nav>
