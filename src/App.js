@@ -82,6 +82,7 @@ function App() {
           <Link to="/mypokemon" css={css`
             display: inline-block;
             position: absolute;
+            height: 3rem;
             right: 0;
             top: 50%;
             transform: translate(0, -50%);
