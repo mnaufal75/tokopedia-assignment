@@ -48,10 +48,11 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App" css={css`
         background-color: white;
-        height: 100vh;
+        height: 100%;
         max-width: 500px;
         text-align: center;
         margin: 0 auto;
+        padding-bottom: 1rem;
       `}>
         <nav css={css`
           height: 3rem;
